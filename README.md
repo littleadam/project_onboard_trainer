@@ -14,6 +14,8 @@ Bedrock Retrieve API: This API takes the user query as input and retrieves the m
 Bedrock Generate API (Optional): This API takes the user query and the retrieved documents as input and utilizes the FM (if deployed on SageMaker) to generate a response that incorporates information from both the query and the relevant documents.
 Guardrails (Optional): This component can be used to filter out undesirable or harmful content from the user query or the model response based on pre-defined policies.
 Response: The final response is presented to the user through the UI.
+
+
 Data Flow:
 
 User submits a query: The user enters a query through the UI.
@@ -25,12 +27,34 @@ Document Retrieval: The Bedrock Retrieve API searches the Bedrock Knowledge Base
 (Optional) Generate Response: If an FM is used, the Bedrock Generate API takes the user query and the retrieved documents as input and generates a response using the FM.
 (Optional) Apply Guardrails: Guardrails can be used to filter inappropriate content from the user query or the model response.
 Present Response: The final response is displayed to the user through the UI.
+
+
 Benefits:
 
 Improves the accuracy and relevance of responses by incorporating information from relevant documents.
 Reduces the need to constantly retrain the FM as new knowledge can be added to the knowledge base.
 Provides a more flexible and scalable approach to knowledge-based applications.
+
+
 Note:
 
 This is a high-level diagram. The specific components and data flow may vary depending on your specific requirements.
 The use of SageMaker, Comprehend, and Kendra is optional and depends on your specific use case.
+
+
+graph LR
+A[User submits query] --> B{Send to SageMaker (Optional)}
+B --> C{Process query (SageMaker, Optional)}
+C --> D{Generate query embedding}
+A --> D
+D --> E{Retrieve documents (Bedrock Retrieve API)}
+E --> F{Preprocess documents (Comprehend, Optional)}
+E --> G{Enrich documents (Kendra, Optional)}
+F --> H{Combine with retrieved documents (if Comprehend used)}
+G --> H{Combine with retrieved documents (if Kendra used)}
+C --> H{Combine with query embedding (if SageMaker used)}
+H --> I{Generate response (Bedrock Generate API, Optional)}
+C --> I{Combine with retrieved documents (if SageMaker used)}
+I --> J{Apply guardrails (Optional)}
+C --> J{Combine with query embedding (if SageMaker used)}
+J --> K[Present response]
