@@ -4,15 +4,25 @@ This is an Aws based genAI application to train new members to a project with se
 Components:
 
 User Interface (UI): This is where users interact with the system and submit their queries.
+
 Amazon SageMaker Endpoint (Optional): If your Foundation Model (FM) is deployed on SageMaker, the UI sends the query there for initial processing.
+
 Foundation Model (FM): This is a large language model (LLM) pre-trained on a massive dataset of text and code. It provides a baseline understanding of the user's query. (Optional for Bedrock Integration)
+
 Amazon S3 Bucket: Stores the documents used for knowledge retrieval. These documents can be in various formats like text files, PDFs, etc.
+
 Amazon Comprehend (Optional): If your documents require pre-processing for better understanding, Comprehend can be used for tasks like entity recognition, key phrase extraction, and sentiment analysis.
+
 Amazon Kendra (Optional): This is an optional component that can be used for indexing and searching the documents in the S3 bucket. It can improve retrieval performance.
+
 Bedrock Knowledge Base: This component stores the processed document representations (embeddings) and metadata extracted from the documents in the S3 bucket. The Bedrock Agent automatically generates these embeddings.
+
 Bedrock Retrieve API: This API takes the user query as input and retrieves the most relevant documents from the Bedrock Knowledge Base based on the document embeddings and the query embedding.
+
 Bedrock Generate API (Optional): This API takes the user query and the retrieved documents as input and utilizes the FM (if deployed on SageMaker) to generate a response that incorporates information from both the query and the relevant documents.
+
 Guardrails (Optional): This component can be used to filter out undesirable or harmful content from the user query or the model response based on pre-defined policies.
+
 Response: The final response is presented to the user through the UI.
 
 
