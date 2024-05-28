@@ -5,7 +5,7 @@ Components:
 
 User Interface (UI): This is where users interact with the system and submit their queries.
 
-Amazon SageMaker Endpoint (Optional): If your Foundation Model (FM) is deployed on SageMaker, the UI sends the query there for initial processing.
+Amazon SageMaker Endpoint : If your Foundation Model (FM) is deployed on SageMaker, the UI sends the query there for initial processing.
 
 Foundation Model (FM): This is a large language model (LLM) pre-trained on a massive dataset of text and code. It provides a baseline understanding of the user's query. (Optional for Bedrock Integration)
 
