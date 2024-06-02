@@ -68,3 +68,8 @@ C --> I{Combine with retrieved documents (if SageMaker used)}
 I --> J{Apply guardrails (Optional)}
 C --> J{Combine with query embedding (if SageMaker used)}
 J --> K[Present response]
+
+
+
+
+this project is based on AWS but can be implementated on other platforms too
